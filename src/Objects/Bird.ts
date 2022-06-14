@@ -24,7 +24,11 @@ export class Bird {
             frameRate: 8,
             repeat: -1
         });
-        this.scene.physics.add.sprite(this.x, this.y, this.img).play('flap');
-
+        var player =  this.scene.physics.add.sprite(this.x, this.y, this.img);
+        player.play('flap');
+        return player
+    }
+    update() {
+       
     }
 }

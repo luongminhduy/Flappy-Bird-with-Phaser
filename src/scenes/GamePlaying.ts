@@ -28,10 +28,13 @@ export default class GamePlaying extends Phaser.Scene {
     init() {
         this.bird = new Bird(40, 40, 'birdUp', false, this, ['birdUp', 'birdMid', 'birdDown']);
     }
-    create () {   
-        this.bird.create();
+    create () {
+        this.cursors = this.input.keyboard.createCursorKeys();   
+        this.player = this.bird.create();
     }
     update(time: number, delta: number): void {
-        
+        if (this.cursors.up.isDown)
+             this.player.setVelocityY(-200);
+
     }
 }    
