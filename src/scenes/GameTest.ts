@@ -60,7 +60,7 @@ export default class GameTest extends Phaser.Scene {
             this.player.setVelocityX(-20);
         }
         if (this.cursors.down.isDown) {
-            this.player.setVelocityY(20);
+            this.player.setVelocityY(200);
         }
     }
 }
