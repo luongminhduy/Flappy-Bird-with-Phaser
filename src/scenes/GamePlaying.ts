@@ -1,8 +1,10 @@
 import Phaser from 'phaser'
+import { Base } from '~/Objects/Base';
 import { Bird } from '~/Objects/Bird';
 
 export default class GamePlaying extends Phaser.Scene {
     bird: Bird;
+    base: Base;
     player: any;
     cursors: any;
     pipeUnder: any;
@@ -10,6 +12,7 @@ export default class GamePlaying extends Phaser.Scene {
 	{
         super('flappy bird')
         this.bird = new Bird(0, 0, '', false, this, []);
+        this.base = new Base(0, 0, '', this.bird, this);
 	}
 
 	preload()
@@ -27,11 +30,14 @@ export default class GamePlaying extends Phaser.Scene {
     }
     init() {
         this.bird = new Bird(40, 40, 'birdUp', false, this, ['birdUp', 'birdMid', 'birdDown']);
+        this.base = new Base(140, 460, 'base', this.bird, this);
     }
     create () {
         this.cursors = this.input.keyboard.createCursorKeys();
         this.add.image(136, 256, 'background');   
         this.bird.create();
+        this.base.create();
+
     }
     update(time: number, delta: number): void {
         this.bird.update();
