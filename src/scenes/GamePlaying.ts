@@ -3,7 +3,9 @@ import { Base } from '~/Objects/Base';
 import { Bird } from '~/Objects/Bird';
 import { Pipe } from '~/Objects/Pipe';
 import { PipeOn } from '~/Objects/PipeOn';
+import { Score } from '~/Objects/Score';
 export default class GamePlaying extends Phaser.Scene {
+    score: Score;
     bird: Bird;
     base: Base;
     pipe: Pipe;
@@ -13,6 +15,7 @@ export default class GamePlaying extends Phaser.Scene {
 	constructor()
 	{
         super('flappy bird')
+        this.score = new Score(0, 0, 0, [], this);
         this.bird = new Bird(0, 0, '', false, this, []);
         this.base = new Base(0, 0, '', this.bird, this);
         this.pipe = new Pipe(300, 500, '', this.bird, this);
@@ -31,12 +34,24 @@ export default class GamePlaying extends Phaser.Scene {
         this.load.path = "Pipe/";
         this.load.image('pipeOn', 'pipeOn.png');
         this.load.image('pipeUnder', 'pipeUnder.png');
+        this.load.path = "Number/";
+        this.load.image('0', '0.png');
+        this.load.image('1', '1.png');
+        this.load.image('2', '2.png');
+        this.load.image('3', '3.png');
+        this.load.image('4', '4.png');
+        this.load.image('5', '5.png');
+        this.load.image('6', '6.png');
+        this.load.image('7', '7.png');
+        this.load.image('8', '8.png');
+        this.load.image('9', '9.png');
     }
     init() {
         this.bird = new Bird(40, 40, 'birdUp', false, this, ['birdUp', 'birdMid', 'birdDown']);
         this.base = new Base(140, 460, 'base', this.bird, this);
         this.pipe = new Pipe(300, 800, 'pipeUnder', this.bird, this);
         this.pipeOn = new PipeOn(619, -100, 'pipeOn', this.bird, this, this.pipe);
+        this.score = new Score(135, 100, 10, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], this);
     }
     create () {
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -45,6 +60,7 @@ export default class GamePlaying extends Phaser.Scene {
         this.pipeOn.create();
         this.pipe.create();
         this.base.create();
+        this.score.create();
 
     }
     update(time: number, delta: number): void {
