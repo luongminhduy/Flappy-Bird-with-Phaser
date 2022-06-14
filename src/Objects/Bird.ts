@@ -1,6 +1,8 @@
 export class Bird {
+    player: any = 0;
     x: number;
     y: number;
+    angle: number = 85;
     img: string;
     isDead: boolean;
     animations: string[];
@@ -24,11 +26,11 @@ export class Bird {
             frameRate: 8,
             repeat: -1
         });
-        var player =  this.scene.physics.add.sprite(this.x, this.y, this.img);
-        player.play('flap');
-        return player
+        this.player = this.scene.physics.add.sprite(this.x, this.y, this.img);
+        this.player.play('flap');
     }
     update() {
-       
+        if (this.player.angle <= 60)
+            this.player.angle += 4;
     }
 }

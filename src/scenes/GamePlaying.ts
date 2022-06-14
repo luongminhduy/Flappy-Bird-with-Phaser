@@ -29,12 +29,15 @@ export default class GamePlaying extends Phaser.Scene {
         this.bird = new Bird(40, 40, 'birdUp', false, this, ['birdUp', 'birdMid', 'birdDown']);
     }
     create () {
-        this.cursors = this.input.keyboard.createCursorKeys();   
-        this.player = this.bird.create();
+        this.cursors = this.input.keyboard.createCursorKeys();
+        this.add.image(136, 256, 'background');   
+        this.bird.create();
     }
     update(time: number, delta: number): void {
-        if (this.cursors.up.isDown)
-             this.player.setVelocityY(-200);
-
+        this.bird.update();
+        if (this.cursors.up.isDown) {
+            this.bird.player.setVelocityY(-200);
+            this.bird.player.angle = -45;
+        }     
     }
 }    
