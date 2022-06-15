@@ -3,7 +3,7 @@ import Phaser, { Game } from 'phaser'
 import HelloWorldScene from './scenes/HelloWorldScene'
 import GameTest from './scenes/GamePlaying'
 import GamePlaying from './scenes/GamePlaying'
-
+import GameOver from './scenes/GameOver'
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
 	width: 280,
@@ -14,7 +14,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			gravity: { y: 500 }
 		}
 	},
-	scene: [GamePlaying]
+	scene: [GameOver, GamePlaying]
 }
 
 export default new Phaser.Game(config)

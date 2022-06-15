@@ -21,7 +21,10 @@ export class Score {
             this.objectFirst.destroy();
             this.objectSecond.destroy();
         }
-        if (this.score <= 9) {
+        if (this.score <= 0) {
+            this.object = this.scene.add.image(this.x, this.y, this.img[0]);
+        }
+        else if (this.score <= 9) {
             this.object = this.scene.add.image(this.x, this.y, this.img[this.score]);
         }
         else if (this.score >= 10 && this.score <= 99) {
