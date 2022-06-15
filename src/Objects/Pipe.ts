@@ -19,7 +19,6 @@ export class Pipe {
         this.score = score;
     }
     create() {
-        var temp: boolean = false;
         this.obtascle = this.scene.physics.add.sprite(this.x, this.y, this.img);
         this.obtascle.setImmovable(true);
         this.obtascle.body.allowGravity = false;

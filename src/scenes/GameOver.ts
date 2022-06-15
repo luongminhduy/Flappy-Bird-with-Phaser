@@ -4,7 +4,7 @@ export default class GameOver extends Phaser.Scene {
     cursors: any;
 	constructor()
 	{
-        super('GameOver') 
+        super('GameOver')
 	}
 
 	preload()
