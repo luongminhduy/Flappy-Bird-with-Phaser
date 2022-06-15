@@ -32,5 +32,6 @@ export class Bird {
     update() {
         if (this.player.angle <= 60)
             this.player.angle += 4;
+        if (this.isDead)  this.scene.scene.start('GameOver');    
     }
 }

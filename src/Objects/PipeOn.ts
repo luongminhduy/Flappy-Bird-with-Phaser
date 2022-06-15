@@ -20,7 +20,11 @@ export class PipeOn {
         this.obtascle = this.scene.physics.add.image(this.x, this.y, this.img);
         this.obtascle.setImmovable(true);
         this.obtascle.body.allowGravity = false;
-        this.scene.physics.add.collider(this.bird.player, this.obtascle);
+        this.scene.physics.add.collider(this.bird.player, this.obtascle, (_player, _obtascle) => {
+            if (_player.body.touching) {
+                this.bird.isDead = true;
+            }
+        });
         this.obtascle.setVelocityX(-80);
     }
     update() {

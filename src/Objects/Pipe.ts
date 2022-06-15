@@ -19,11 +19,16 @@ export class Pipe {
         this.score = score;
     }
     create() {
-        this.obtascle = this.scene.physics.add.image(this.x, this.y, this.img);
+        var temp: boolean = false;
+        this.obtascle = this.scene.physics.add.sprite(this.x, this.y, this.img);
         this.obtascle.setImmovable(true);
         this.obtascle.body.allowGravity = false;
-        this.scene.physics.add.collider(this.bird.player, this.obtascle);
         this.obtascle.setVelocityX(-80);
+        this.scene.physics.add.collider(this.bird.player, this.obtascle, (_player, _obtascle) => {
+            if (_player.body.touching) {
+                    this.bird.isDead = true;
+            }        
+        });
     }
     update() {
         if (this.obtascle.x < - 20) {
