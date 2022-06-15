@@ -17,6 +17,10 @@ export class Base {
         var base = this.scene.physics.add.image(this.x, this.y, this.img);
         base.setImmovable(true);
         base.body.allowGravity = false;
-        this.scene.physics.add.collider(this.bird.player, base);
+        this.scene.physics.add.collider(this.bird.player, base, (_player, _obtascle) => {
+            if (_player.body.touching) {
+                    this.bird.isDead = true;
+            }        
+        });
     }   
 }
