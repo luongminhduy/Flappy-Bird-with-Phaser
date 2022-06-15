@@ -7,6 +7,7 @@ import { PipeOn } from '~/Objects/PipeOn';
 import { Score } from '~/Objects/Score';
 import { Star } from '~/Objects/Star';
 export default class GamePlaying extends Phaser.Scene {
+    bullet: Score;
     fire: Fire;
     star: Star;
     score: Score;
@@ -20,11 +21,12 @@ export default class GamePlaying extends Phaser.Scene {
 	{
         super('GamePlaying')
         this.score = new Score(0, 0, 0, [], this);
+        this.bullet = new Score(0, 0, 0, [], this);
         this.bird = new Bird(0, 0, '', false, this, []);
         this.base = new Base(0, 0, '', this.bird, this);
         this.pipe = new Pipe(300, 500, '', this.bird, this, this.score);
         this.pipeOn = new PipeOn(619, -100 ,'', this.bird, this, this.pipe);
-        this.star = new Star(0, 0, '', this.bird, this.pipe, this.base, this);
+        this.star = new Star(0, 0, '', this.bird, this.pipe, this.base, this, this.bullet);
         this.fire = new Fire('', this.bird, this);     
 	}
 
@@ -57,11 +59,12 @@ export default class GamePlaying extends Phaser.Scene {
     }
     init() {
         this.score = new Score(135, 100, -1, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], this);
+        this.bullet = new Score(20, 30, 0, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], this);
         this.bird = new Bird(40, 40, 'birdUp', false, this, ['birdUp', 'birdMid', 'birdDown']);
         this.base = new Base(140, 460, 'base', this.bird, this);
         this.pipe = new Pipe(300, 800, 'pipeUnder', this.bird, this, this.score);
         this.pipeOn = new PipeOn(619, -100, 'pipeOn', this.bird, this, this.pipe);
-        this.star = new Star(200, 300, 'star', this.bird, this.pipe, this.base, this);
+        this.star = new Star(200, 300, 'star', this.bird, this.pipe, this.base, this, this.bullet);
         this.fire = new Fire('fire', this.bird, this);
     }
     create () {
@@ -72,11 +75,15 @@ export default class GamePlaying extends Phaser.Scene {
         this.pipe.create();
         this.base.create();
         this.score.create();
+        this.bullet.create();
         this.star.create();
         //this.fire.create();
         var timedEvent = this.time.addEvent({ delay: 100, callback: () => {
-            if (this.cursors.right.isDown)
-            this.fire.create();
+            if (this.cursors.right.isDown && this.bullet.score >= 1) {
+                this.fire.create();
+                this.bullet.score--;
+                this.bullet.create();
+            }
         }, callbackScope: this, loop: true });
     }
     update(time: number, delta: number): void {

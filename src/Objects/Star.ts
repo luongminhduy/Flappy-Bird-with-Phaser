@@ -1,8 +1,10 @@
 import { Base } from "./Base";
 import { Bird } from "./Bird";
 import { Pipe } from "./Pipe";
+import { Score } from "./Score";
 
 export class Star {
+    bullet: Score;
     x: number;
     y: number;
     img: string;
@@ -11,7 +13,7 @@ export class Star {
     base: Base;
     scene: Phaser.Scene;
     obj: any = 0;
-    constructor(x: number, y: number, img: string, bird: Bird, pipe: Pipe, base: Base, scene: Phaser.Scene) {
+    constructor(x: number, y: number, img: string, bird: Bird, pipe: Pipe, base: Base, scene: Phaser.Scene, bullet: Score) {
         this.x = x;
         this.y = y;
         this.img = img;
@@ -19,6 +21,7 @@ export class Star {
         this.pipe = pipe;
         this.base = base;
         this.scene = scene;
+        this.bullet = bullet;
     }
     create() {
         this.obj = this.scene.physics.add.sprite(this.x, this.y, this.img);
@@ -26,7 +29,10 @@ export class Star {
         this.obj.body.allowGravity = false;
         this.obj.setVelocityX(-80);
         this.scene.physics.add.overlap(this.obj, this.bird.player, () => {
+            this.obj.x = this.bird.player.x + 200;
             this.obj.setVisible(false);
+            this.bullet.score += 1;
+            this.bullet.create();
         })
     }
     update() {
