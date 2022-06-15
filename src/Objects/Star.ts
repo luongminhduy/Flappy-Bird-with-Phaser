@@ -25,11 +25,15 @@ export class Star {
         this.obj.setImmovable(true);
         this.obj.body.allowGravity = false;
         this.obj.setVelocityX(-80);
+        this.scene.physics.add.overlap(this.obj, this.bird.player, () => {
+            this.obj.setVisible(false);
+        })
     }
     update() {
-        if (this.obj.x < - 20) {
-            this.obj.x = 300;
-            this.obj.y = Phaser.Math.Between(100, 300);
-    }
+        if (this.obj.x < - 20 || !this.obj) {
+             this.obj.x = 300;
+             this.obj.y = Phaser.Math.Between(100, 300);
+             this.obj.setVisible(true);
+        }
     }
 }

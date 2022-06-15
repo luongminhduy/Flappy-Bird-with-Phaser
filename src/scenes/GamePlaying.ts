@@ -68,7 +68,6 @@ export default class GamePlaying extends Phaser.Scene {
         this.base.create();
         this.score.create();
         this.star.create();
-
     }
     update(time: number, delta: number): void {
         this.bird.update();
