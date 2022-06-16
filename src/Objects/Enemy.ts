@@ -36,7 +36,9 @@ export class Enemy {
         this.obj.play('flap-enemy');
         this.scene.physics.add.collider(this.bird.player, this.obj, (_player, _obtascle) => {
             if (_player.body.touching) {
-                    this.bird.isDead = true;
+                    //this.bird.isDead = true;
+                    this.bird.player.setVelocityY(200);
+                    this.bird.player.setVelocityX(0);
             }        
         });
         var X = Phaser.Math.Between(-500, - 200);
