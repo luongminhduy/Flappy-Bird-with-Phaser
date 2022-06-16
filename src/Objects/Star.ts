@@ -25,18 +25,23 @@ export class Star {
     }
     create() {
         this.obj = this.scene.physics.add.sprite(this.x, this.y, this.img);
-        this.obj.setImmovable(true);
+        this.obj.setImmovable(false);
         this.obj.body.allowGravity = false;
         this.obj.setVelocityX(-80);
+ 
         this.scene.physics.add.overlap(this.obj, this.bird.player, () => {
             this.obj.x = this.bird.player.x + 300;
+            this.obj.setActive(false).setVisible(false);
+            //this.obj.x = this.pipe.obtascle.x - 100;
+            //this.obj.destroy();
             this.bullet.score += 1;
             this.bullet.create();
         })
     }
     update() {
-        if (this.obj.x < - 20 || !this.obj) {
-             this.obj.x = 300;
+        if (this.obj.x < 0 || !this.obj.visible && this.pipe.obtascle.x == 300) {
+            this.obj.setActive(true).setVisible(true);
+            this.obj.x = this.pipe.obtascle.x - 100;
              this.obj.y = Phaser.Math.Between(100, 300);
         }
     }

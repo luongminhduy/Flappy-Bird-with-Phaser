@@ -42,9 +42,11 @@ export class Enemy {
         var Y = Phaser.Math.Between(-500, - 200);
         this.obj.setVelocityX(X);
         this.obj.setVelocityY(Y);
+        this.obj.setImmovable(false);
         this.scene.physics.add.collider(this.fire.shot, this.obj, (_player, _obtascle) => {
-            if (_player.body.touching) {
-                this.obj.setActive(false).setVisible(false);
+            if (_obtascle.body.touching) {
+                //this.obj.setActive(false).setVisible(false);
+                //this.obj.destroy();
                 this.score.score += 2;
                 this.score.create();
             }        

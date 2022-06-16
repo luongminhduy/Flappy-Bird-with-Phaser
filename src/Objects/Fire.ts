@@ -14,7 +14,7 @@ export class Fire {
         var x = this.bird.player.x;
         var y = this.bird.player.y;
         this.shot = this.scene.physics.add.sprite(x, y, this.img).setScale(0.1);
-        this.shot.setImmovable(true);
+        this.shot.setImmovable(false);
         this.shot.body.allowGravity = false;
         this.shot.setVelocityX(300);
     }
