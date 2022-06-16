@@ -67,13 +67,14 @@ export default class GamePlaying extends Phaser.Scene {
     init() {
         this.score = new Score(135, 100, -1, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], this);
         this.bullet = new Score(20, 30, 0, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], this);
+        this.bullet.scale = 0.6;
         this.bird = new Bird(40, 40, 'birdUp', false, this, ['birdUp', 'birdMid', 'birdDown']);
         this.base = new Base(140, 460, 'base', this.bird, this);
         this.pipe = new Pipe(300, 800, 'pipeUnder', this.bird, this, this.score);
         this.pipeOn = new PipeOn(619, -100, 'pipeOn', this.bird, this, this.pipe);
         this.star = new Star(200, 300, 'star', this.bird, this.pipe, this.base, this, this.bullet);
         this.fire = new Fire('fire', this.bird, this);
-        this.enemy = new Enemy(400, 300, ['enemy1', 'enemy2', 'enemy3'], this.bird, this.fire, this.score, this);
+        this.enemy = new Enemy(300, 300, ['enemy1', 'enemy2', 'enemy3'], this.bird, this.fire, this.score, this);
     }
     create () {
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -84,6 +85,7 @@ export default class GamePlaying extends Phaser.Scene {
         this.base.create();
         this.score.create();
         this.bullet.create();
+        this.bullet.scale = 0.6;
         this.star.create();
         //this.fire.create();
         this.input.keyboard.on('keydown-X', () => {
