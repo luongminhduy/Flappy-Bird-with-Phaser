@@ -22,17 +22,17 @@ export class Enemy {
     }
     create() {
         this.scene.anims.create({
-            key: 'flap',
+            key: 'flap-enemy',
             frames: [
                 { key: this.img[0] },
                 { key: this.img[1] },
-                { key: this.img[2], duration: 90 }
+                { key: this.img[1], duration: 90 }
             ],
             frameRate: 8,
             repeat: -1
         });
         this.obj = this.scene.physics.add.sprite(this.x, this.y, this.img[0]);
-        this.obj.play('flap');
+        this.obj.play('flap-enemy');
         this.scene.physics.add.collider(this.bird.player, this.obj, (_player, _obtascle) => {
             if (_player.body.touching) {
                     this.bird.isDead = true;
@@ -46,6 +46,7 @@ export class Enemy {
             if (_player.body.touching) {
                 this.obj.setActive(false).setVisible(false);
                 this.score.score += 2;
+                this.score.create();
             }        
         });
     }

@@ -59,6 +59,10 @@ export default class GamePlaying extends Phaser.Scene {
         this.load.path = "Advance/";
         this.load.image('star', 'star.png');
         this.load.image('fire', 'fire.png');
+        this.load.path = "Enemy/";
+        this.load.image('enemy1', 'up.png');
+        this.load.image('enemy2', 'mid.png');
+        this.load.image('enemy3', 'down.png');
     }
     init() {
         this.score = new Score(135, 100, -1, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], this);
@@ -69,7 +73,7 @@ export default class GamePlaying extends Phaser.Scene {
         this.pipeOn = new PipeOn(619, -100, 'pipeOn', this.bird, this, this.pipe);
         this.star = new Star(200, 300, 'star', this.bird, this.pipe, this.base, this, this.bullet);
         this.fire = new Fire('fire', this.bird, this);
-        this.enemy = new Enemy(400, 300, ['birdUp', 'birdMid', 'birdDown'], this.bird, this.fire, this.score, this);
+        this.enemy = new Enemy(400, 300, ['enemy1', 'enemy2', 'enemy3'], this.bird, this.fire, this.score, this);
     }
     create () {
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -104,5 +108,6 @@ export default class GamePlaying extends Phaser.Scene {
             this.bird.player.setVelocityY(-200);
             this.bird.player.angle = -45;
         }
+        console.log(this.enemy.img);
     }
 }    
