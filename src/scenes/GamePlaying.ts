@@ -108,6 +108,5 @@ export default class GamePlaying extends Phaser.Scene {
             this.bird.player.setVelocityY(-200);
             this.bird.player.angle = -45;
         }
-        console.log(this.enemy.img);
     }
 }    
