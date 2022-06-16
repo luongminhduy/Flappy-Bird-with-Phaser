@@ -94,6 +94,14 @@ export default class GameLoading extends Phaser.Scene {
             this.load.image('enemy1', 'up.png');
             this.load.image('enemy2', 'mid.png');
             this.load.image('enemy3', 'down.png');
+            this.load.path = "Sounds/";
+            this.load.audio('fly', 'fly.mp3');
+            this.load.audio('score', 'score.mp3');
+            this.load.audio('fire', 'fire.wav');
+            this.load.audio('star', 'star.wav');
+            this.load.audio('enemy', 'enemy.wav');
+            this.load.audio('gameOver', 'gameOver.wav');
+            this.load.audio('gameStart', 'gameStart.wav');
 
     }
     init() {

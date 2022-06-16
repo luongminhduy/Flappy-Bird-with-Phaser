@@ -21,6 +21,7 @@ export class Enemy {
         this.scene = scene;
     }
     create() {
+        this.scene.sound.add('enemy').play();
         this.scene.anims.create({
             key: 'flap-enemy',
             frames: [
@@ -44,9 +45,9 @@ export class Enemy {
         this.obj.setVelocityY(Y);
         this.obj.setImmovable(false);
         this.scene.physics.add.collider(this.fire.shot, this.obj, (_player, _obtascle) => {
-            if (_obtascle.body.touching) {
+            if (_obtascle.body.touching || _player.body.touching) {
                 //this.obj.setActive(false).setVisible(false);
-                //this.obj.destroy();
+                this.obj.destroy();
                 this.score.score += 2;
                 this.score.create();
             }        

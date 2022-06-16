@@ -34,6 +34,7 @@ export class Star {
             this.obj.setActive(false).setVisible(false);
             //this.obj.x = this.pipe.obtascle.x - 100;
             //this.obj.destroy();
+            this.scene.sound.add('star').play();
             this.bullet.score += 1;
             this.bullet.create();
         })

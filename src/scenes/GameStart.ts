@@ -15,6 +15,7 @@ export default class GameStart extends Phaser.Scene {
         this.bird = new Bird(80, 305, 'birdUp', false, this, ['birdUp', 'birdMid', 'birdDown']);
     }
     create () {
+        this.sound.add('gameStart').play();
         this.cursors = this.input.keyboard.createCursorKeys();
         this.img1 = this.physics.add.image(136, 256, 'background');
         this.img1.body.allowGravity = false;

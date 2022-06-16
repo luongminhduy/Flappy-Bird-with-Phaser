@@ -61,6 +61,7 @@ export default class GamePlaying extends Phaser.Scene {
                 this.fire.create();
                 this.bullet.score--;
                 this.bullet.create();
+                this.sound.add('fire').play();
             }
         }, this);
 
@@ -77,6 +78,7 @@ export default class GamePlaying extends Phaser.Scene {
         if (this.cursors.up.isDown) {
             this.bird.player.setVelocityY(-200);
             this.bird.player.angle = -45;
+            this.sound.add('fly').play();
         }
     }
 }    
