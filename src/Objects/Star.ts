@@ -29,8 +29,7 @@ export class Star {
         this.obj.body.allowGravity = false;
         this.obj.setVelocityX(-80);
         this.scene.physics.add.overlap(this.obj, this.bird.player, () => {
-            this.obj.x = this.bird.player.x + 200;
-            this.obj.setVisible(false);
+            this.obj.x = this.bird.player.x + 300;
             this.bullet.score += 1;
             this.bullet.create();
         })
@@ -39,7 +38,6 @@ export class Star {
         if (this.obj.x < - 20 || !this.obj) {
              this.obj.x = 300;
              this.obj.y = Phaser.Math.Between(100, 300);
-             this.obj.setVisible(true);
         }
     }
 }

@@ -1,12 +1,14 @@
 import Phaser from 'phaser'
 import { Base } from '~/Objects/Base';
 import { Bird } from '~/Objects/Bird';
+import { Enemy } from '~/Objects/Enemy';
 import { Fire } from '~/Objects/Fire';
 import { Pipe } from '~/Objects/Pipe';
 import { PipeOn } from '~/Objects/PipeOn';
 import { Score } from '~/Objects/Score';
 import { Star } from '~/Objects/Star';
 export default class GamePlaying extends Phaser.Scene {
+    enemy: Enemy;
     bullet: Score;
     fire: Fire;
     star: Star;
@@ -27,7 +29,8 @@ export default class GamePlaying extends Phaser.Scene {
         this.pipe = new Pipe(300, 500, '', this.bird, this, this.score);
         this.pipeOn = new PipeOn(619, -100 ,'', this.bird, this, this.pipe);
         this.star = new Star(0, 0, '', this.bird, this.pipe, this.base, this, this.bullet);
-        this.fire = new Fire('', this.bird, this);     
+        this.fire = new Fire('', this.bird, this);
+        this.enemy = new Enemy(0, 0, [], this.bird, this.fire, this.score, this);     
 	}
 
 	preload()
@@ -66,6 +69,7 @@ export default class GamePlaying extends Phaser.Scene {
         this.pipeOn = new PipeOn(619, -100, 'pipeOn', this.bird, this, this.pipe);
         this.star = new Star(200, 300, 'star', this.bird, this.pipe, this.base, this, this.bullet);
         this.fire = new Fire('fire', this.bird, this);
+        this.enemy = new Enemy(400, 300, ['birdUp', 'birdMid', 'birdDown'], this.bird, this.fire, this.score, this);
     }
     create () {
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -84,6 +88,10 @@ export default class GamePlaying extends Phaser.Scene {
                 this.bullet.score--;
                 this.bullet.create();
             }
+        }, callbackScope: this, loop: true });
+
+        var enemyEvent = this.time.addEvent({ delay: 3000, callback: () => {
+            this.enemy.create();
         }, callbackScope: this, loop: true });
     }
     update(time: number, delta: number): void {
