@@ -86,13 +86,13 @@ export default class GamePlaying extends Phaser.Scene {
         this.bullet.create();
         this.star.create();
         //this.fire.create();
-        var timedEvent = this.time.addEvent({ delay: 100, callback: () => {
-            if (this.cursors.right.isDown && this.bullet.score >= 1) {
+        this.input.keyboard.on('keydown-X', () => {
+            if (this.bullet.score >= 1) {
                 this.fire.create();
                 this.bullet.score--;
                 this.bullet.create();
             }
-        }, callbackScope: this, loop: true });
+        }, this);
 
         var enemyEvent = this.time.addEvent({ delay: 3000, callback: () => {
             this.enemy.create();
