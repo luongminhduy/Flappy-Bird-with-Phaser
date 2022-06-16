@@ -102,7 +102,7 @@ export default class GameLoading extends Phaser.Scene {
             this.load.audio('enemy', 'enemy.wav');
             this.load.audio('gameOver', 'gameOver.wav');
             this.load.audio('gameStart', 'gameStart.wav');
-
+            this.load.audio('hit', 'hit.wav');
     }
     init() {
         

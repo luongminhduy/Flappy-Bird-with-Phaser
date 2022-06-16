@@ -47,7 +47,9 @@ export class Enemy {
         this.scene.physics.add.collider(this.fire.shot, this.obj, (_player, _obtascle) => {
             if (_obtascle.body.touching || _player.body.touching) {
                 //this.obj.setActive(false).setVisible(false);
+                this.scene.sound.add('hit').play();
                 this.obj.destroy();
+                this.fire.shot.destroy();
                 this.score.score += 2;
                 this.score.create();
             }        
