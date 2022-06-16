@@ -11,17 +11,6 @@ export default class GameStart extends Phaser.Scene {
         super('GameStart');
         this.bird = new Bird(0, 0, '', false, this, []);
 	}
-
-	preload()
-    {
-        this.load.path = "BackGround/";
-        this.load.image('background', "bg.png");
-        this.load.image('message', 'message.png');
-        this.load.path = "Bird/";
-        this.load.image('birdUp', "redbird-upflap.png");
-        this.load.image('birdMid', "redbird-midflap.png");
-        this.load.image('birdDown', "redbird-downflap.png");
-    }
     init() {
         this.bird = new Bird(80, 305, 'birdUp', false, this, ['birdUp', 'birdMid', 'birdDown']);
     }

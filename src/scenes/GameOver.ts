@@ -6,13 +6,6 @@ export default class GameOver extends Phaser.Scene {
 	{
         super('GameOver')
 	}
-
-	preload()
-    {
-        this.load.path = "BackGround/";
-        this.load.image('background', "bg.png");
-        this.load.image('gameOver', "gameover.png");
-    }
     init() {
         
     }
