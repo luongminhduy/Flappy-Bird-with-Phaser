@@ -37,6 +37,7 @@ export class Score {
     }
     update(pipe: Pipe) {
         if (pipe.obtascle.x == -10)
+            console.log("aaaa");
             this.score++;
             console.log(this.score);
             this.create();
