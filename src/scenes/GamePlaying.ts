@@ -19,6 +19,8 @@ export default class GamePlaying extends Phaser.Scene {
     pipeOn: PipeOn;
     player: any;
     cursors: any;
+    img1: any = 0;
+    img2: any = 0;
 	constructor()
 	{
         super('GamePlaying')
@@ -46,17 +48,20 @@ export default class GamePlaying extends Phaser.Scene {
     }
     create () {
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.add.image(136, 256, 'background');   
+        this.img1 = this.physics.add.image(136, 256, 'background');
+        this.img1.body.allowGravity = false;
+        this.img1.setVelocityX(-10);
+        this.img2 = this.physics.add.image(336, 256, 'background');
+        this.img2.body.allowGravity = false;
+        this.img2.setVelocityX(-10);
         this.bird.create();
         this.pipe.create();
         this.pipeOn.create();
-        //this.pipe.create();
         this.base.create();
         this.score.create();
         this.bullet.create();
         this.bullet.scale = 0.6;
         this.star.create();
-        //this.fire.create();
         this.input.keyboard.on('keydown-X', () => {
             if (this.bullet.score >= 1) {
                 this.fire.create();
@@ -81,5 +86,7 @@ export default class GamePlaying extends Phaser.Scene {
             this.bird.player.angle = -45;
             this.sound.add('fly').play();
         }
+        if (this.img1.x < - 60) this.img1.x = 336;
+        if (this.img2.x < - 60) this.img2.x = 336;
     }
 }    

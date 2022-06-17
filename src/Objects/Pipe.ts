@@ -35,7 +35,7 @@ export class Pipe {
     update() {
         if (this.obtascle.x < - 20) {
                 this.obtascle.x = 300;
-                this.obtascle.y = Phaser.Math.Between(240, 500);
+                this.obtascle.y = Phaser.Math.Between(240, 530);
                 this.score.score++;
                 if (this.score.score > 0)
                     this.scene.sound.add('score').play();

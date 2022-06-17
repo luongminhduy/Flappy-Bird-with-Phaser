@@ -27,10 +27,10 @@ export class Enemy {
             frames: [
                 { key: this.img[0] },
                 { key: this.img[1] },
-                { key: this.img[1], duration: 90 }
+                { key: this.img[2], duration: 90 }
             ],
             frameRate: 8,
-            repeat: -1
+            repeat: 1
         });
         this.obj = this.scene.physics.add.sprite(this.x, this.y, this.img[0]);
         this.obj.play('flap-enemy');
@@ -39,6 +39,7 @@ export class Enemy {
                     //this.bird.isDead = true;
                     this.bird.player.setVelocityY(200);
                     this.bird.player.setVelocityX(0);
+                    
             }        
         });
         var X = Phaser.Math.Between(-500, - 200);
@@ -48,10 +49,15 @@ export class Enemy {
         this.obj.setImmovable(false);
         this.scene.physics.add.collider(this.fire.shot, this.obj, (_player, _obtascle) => {
             if (_obtascle.body.touching || _player.body.touching) {
-                //this.obj.setActive(false).setVisible(false);
+                this.fire.shot.setScale(1);
+                this.fire.shot.play('flap-enemy', false);
+                this.fire.shot.once('animationcomplete', () => {
+                    console.log('SPRITE_ANIMATION_COMPLETE');
+                    this.fire.shot.destroy();
+                })
                 this.scene.sound.add('hit').play();
                 this.obj.destroy();
-                this.fire.shot.destroy();
+                //this.fire.shot.destroy();
                 this.score.score += 2;
                 this.score.create();
             }        
