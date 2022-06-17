@@ -66,7 +66,7 @@ export default class GamePlaying extends Phaser.Scene {
             if (this.bullet.score >= 1) {
                 this.fire.create();
                 this.bullet.score--;
-                this.bullet.create();
+                this.bullet.create();       
                 this.sound.add('fire').play();
             }
         }, this);
