@@ -10,6 +10,7 @@ export default class GameOver extends Phaser.Scene {
         
     }
     create () {
+        
         this.cursors = this.input.keyboard.createCursorKeys();
         this.add.image(136, 256, 'background');
         this.add.image(136, 206, 'gameOver');

@@ -26,8 +26,8 @@ export default class GamePlaying extends Phaser.Scene {
         this.bullet = new Score(0, 0, 0, [], this);
         this.bird = new Bird(0, 0, '', false, this, []);
         this.base = new Base(0, 0, '', this.bird, this);
-        this.pipe = new Pipe(300, 500, '', this.bird, this, this.score);
-        this.pipeOn = new PipeOn(619, -100 ,'', this.bird, this, this.pipe);
+        this.pipe = new Pipe(100, 500, '', this.bird, this, this.score); //300
+        this.pipeOn = new PipeOn(100, -100 ,'', this.bird, this, this.pipe); //619
         this.star = new Star(0, 0, '', this.bird, this.pipe, this.base, this, this.bullet);
         this.fire = new Fire('', this.bird, this);
         this.enemy = new Enemy(0, 0, [], this.bird, this.fire, this.score, this);     
@@ -38,8 +38,8 @@ export default class GamePlaying extends Phaser.Scene {
         this.bullet.scale = 0.6;
         this.bird = new Bird(40, 40, 'birdUp', false, this, ['birdUp', 'birdMid', 'birdDown']);
         this.base = new Base(140, 460, 'base', this.bird, this);
-        this.pipe = new Pipe(300, 800, 'pipeUnder', this.bird, this, this.score);
-        this.pipeOn = new PipeOn(619, -100, 'pipeOn', this.bird, this, this.pipe);
+        this.pipe = new Pipe(100, 800, 'pipeUnder', this.bird, this, this.score);
+        this.pipeOn = new PipeOn(100, -200, 'pipeOn', this.bird, this, this.pipe);
         this.star = new Star(200, 300, 'star', this.bird, this.pipe, this.base, this, this.bullet);
         this.fire = new Fire('fire', this.bird, this);
         this.enemy = new Enemy(300, 300, ['enemy1', 'enemy2', 'enemy3'], this.bird, this.fire, this.score, this);
@@ -48,8 +48,9 @@ export default class GamePlaying extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
         this.add.image(136, 256, 'background');   
         this.bird.create();
-        this.pipeOn.create();
         this.pipe.create();
+        this.pipeOn.create();
+        //this.pipe.create();
         this.base.create();
         this.score.create();
         this.bullet.create();
