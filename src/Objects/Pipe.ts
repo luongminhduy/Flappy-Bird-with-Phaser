@@ -25,7 +25,10 @@ export class Pipe {
         this.obtascle.setVelocityX(-80);
         this.scene.physics.add.collider(this.bird.player, this.obtascle, (_player, _obtascle) => {
             if (_player.body.touching) {
-                    this.bird.isDead = true;
+                var temp = this.score.score;
+                if (temp > parseInt(localStorage.getItem('highscore')!))
+                    localStorage.setItem('highscore', temp.toString());
+                this.bird.isDead = true;
             }        
         });
     }
