@@ -27,7 +27,7 @@ export default class GamePlaying extends Phaser.Scene {
         this.score = new Score(0, 0, 0, [], this);
         this.bullet = new Score(0, 0, 0, [], this);
         this.bird = new Bird(0, 0, '', false, this, []);
-        this.base = new Base(0, 0, '', this.bird, this);
+        this.base = new Base(0, 0, '', this.bird, this.score, this);
         this.pipe = new Pipe(100, 500, '', this.bird, this, this.score); //300
         this.pipeOn = new PipeOn(100, -100 ,'', this.bird, this, this.pipe); //619
         this.star = new Star(0, 0, '', this.bird, this.pipe, this.base, this, this.bullet);
@@ -39,7 +39,7 @@ export default class GamePlaying extends Phaser.Scene {
         this.bullet = new Score(20, 30, 0, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], this);
         this.bullet.scale = 0.6;
         this.bird = new Bird(40, 40, 'birdUp', false, this, ['birdUp', 'birdMid', 'birdDown']);
-        this.base = new Base(140, 460, 'base', this.bird, this);
+        this.base = new Base(140, 460, 'base', this.bird, this.score, this);
         this.pipe = new Pipe(100, 800, 'pipeUnder', this.bird, this, this.score);
         this.pipeOn = new PipeOn(100, -200, 'pipeOn', this.bird, this, this.pipe);
         this.star = new Star(200, 300, 'star', this.bird, this.pipe, this.base, this, this.bullet);

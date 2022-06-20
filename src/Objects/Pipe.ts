@@ -26,8 +26,8 @@ export class Pipe {
         this.scene.physics.add.collider(this.bird.player, this.obtascle, (_player, _obtascle) => {
             if (_player.body.touching) {
                 var temp = this.score.score;
-                if (temp > parseInt(localStorage.getItem('highscore')!))
-                    localStorage.setItem('highscore', temp.toString());
+                if (temp > parseInt(localStorage.getItem('highScore')!))
+                    localStorage.setItem('highScore', temp.toString());
                 this.bird.isDead = true;
             }        
         });
