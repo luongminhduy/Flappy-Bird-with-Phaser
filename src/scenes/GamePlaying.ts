@@ -81,6 +81,8 @@ export default class GamePlaying extends Phaser.Scene {
         this.pipeOn.update();
         this.star.update();
         this.fire.update();
+        if (this.enemy)
+            this.enemy.update();
         if (this.cursors.up.isDown) {
             this.bird.player.setVelocityY(-200);
             this.bird.player.angle = -45;

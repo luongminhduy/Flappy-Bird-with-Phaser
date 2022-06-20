@@ -32,7 +32,6 @@ export default class GameOver extends Phaser.Scene {
     update(time: number, delta: number): void {
         if (this.cursors.up.isDown) {
             this.scene.start('GamePlaying');
-            console.log("AAA");
         }
         if (this.img1.x < - 60) this.img1.x = 336;
         if (this.img2.x < - 60) this.img2.x = 336;

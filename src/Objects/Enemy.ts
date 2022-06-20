@@ -42,11 +42,28 @@ export class Enemy {
                     
             }        
         });
-        var X = Phaser.Math.Between(-500, - 200);
-        var Y = Phaser.Math.Between(-500, - 200);
+        var X =  Phaser.Math.Between(-500, - 200);
+        var Y =  Phaser.Math.Between(-500, - 200);
         this.obj.setVelocityX(X);
         this.obj.setVelocityY(Y);
         this.obj.setImmovable(false);
+        this.scene.physics.add.collider(this.fire.shot, this.obj, (_player, _obtascle) => {
+            if (_obtascle.body.touching || _player.body.touching) {
+                this.fire.shot.setScale(1);
+                this.fire.shot.play('flap-enemy', false);
+                this.fire.shot.once('animationcomplete', () => {
+                    console.log('SPRITE_ANIMATION_COMPLETE');
+                    this.fire.shot.destroy();
+                })
+                this.scene.sound.add('hit').play();
+                this.obj.destroy();
+                //this.fire.shot.destroy();
+                this.score.score += 2;
+                this.score.create();
+            }        
+        });
+    }
+    update() {
         this.scene.physics.add.collider(this.fire.shot, this.obj, (_player, _obtascle) => {
             if (_obtascle.body.touching || _player.body.touching) {
                 this.fire.shot.setScale(1);

@@ -11,10 +11,10 @@ export class Fire {
         this.scene = scene;
     }
     create() {
-        var x = this.bird.player.x;
+        var x = this.bird.player.x - 20;
         var y = this.bird.player.y;
-        this.shot = this.scene.physics.add.sprite(x, y, this.img).setScale(0.1);
-        this.shot.setImmovable(false);
+        this.shot = this.scene.physics.add.sprite(x, y, this.img).setScale(0.12);
+        this.shot.setImmovable(true);
         this.shot.body.allowGravity = false;
         this.shot.setVelocityX(300);
     }

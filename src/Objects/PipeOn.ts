@@ -30,7 +30,7 @@ export class PipeOn {
     update() {
         if (this.obtascle.x < - 20) {
             this.obtascle.x = 300;
-            this.obtascle.y = this.pipe.obtascle.y - 400;
+            this.obtascle.y = this.pipe.obtascle.y - 420;
     }
     }
 }
