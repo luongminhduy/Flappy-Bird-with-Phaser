@@ -23,19 +23,17 @@ export class Star extends Phaser.Physics.Arcade.Sprite {
         this.obj.setVelocityX(-80);
  
         this.scene.physics.add.overlap(this.obj, this.bird.bodyBird, () => {
-            this.obj.x = this.bird.bodyBird.x + 300;
+            this.obj.x = this.bird.bodyBird.x + 200;
             this.obj.setActive(false).setVisible(false);
-            //this.obj.x = this.pipe.obtascle.x - 100;
-            //this.obj.destroy();
             this.scene.sound.add('star').play();
             this.bullet.score += 1;
-            this.bullet.create();
+            //this.bullet.create();
         })
     }
     update() {
-        if (this.obj.x < 0 || !this.obj.visible && this.pipe.obtascle.x == 300) {
+        if (this.obj.x < -10 || !this.obj.visible  ) {
             this.obj.setActive(true).setVisible(true);
-            this.obj.x = this.pipe.obtascle.x - 100;
+            this.obj.x = this.pipe.obtascle.x + 200;
              this.obj.y = Phaser.Math.Between(100, 300);
         }
     }

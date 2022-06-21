@@ -52,7 +52,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite{
                 this.scene.sound.add('hit').play();
                 this.obj.destroy();
                 this.score.score += 2;
-                this.score.create();
+                //this.score.create();
             }      
         });
     }
@@ -68,9 +68,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite{
                 })
                 this.scene.sound.add('hit').play();
                 this.obj.destroy();
-                //this.fire.shot.destroy();
                 this.score.score += 2;
-                this.score.create();
+                //this.score.create();
             }        
         });
     }

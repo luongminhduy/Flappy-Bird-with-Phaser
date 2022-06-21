@@ -2,9 +2,7 @@
 export class Score extends Phaser.GameObjects.Image {
     score: number;
     img: string[];
-    object !: Phaser.GameObjects.Image
-    objectFirst !: Phaser.GameObjects.Image
-    objectSecond !: Phaser.GameObjects.Image
+    object !: Phaser.GameObjects.Text
     scale: number = 1;
     constructor(x: number, y: number, score: number, img: string[], scene: Phaser.Scene) {
         super(scene, x, y, img[0]);
@@ -13,28 +11,12 @@ export class Score extends Phaser.GameObjects.Image {
        
     }
     create() {
-        if (this.object != null) this.object.destroy();
-        if (this.objectFirst != null && this.objectSecond != null) {
-            this.objectFirst.destroy();
-            this.objectSecond.destroy();
-        }
-        if (this.score <= 0) {
-            this.object = this.scene.add.image(this.x, this.y, this.img[0]).setScale(this.scale);
-        }
-        else if (this.score <= 9) {
-            this.object = this.scene.add.image(this.x, this.y, this.img[this.score]).setScale(this.scale);
-        }
-        else if (this.score >= 10 && this.score <= 99) {
-            var second = this.score % 10;
-            var first = Math.floor(this.score / 10);
-            this.objectFirst = this.scene.add.image(this.x - 14, this.y, this.img[first]).setScale(this.scale);
-            this.objectSecond = this.scene.add.image(this.x + 14, this.y, this.img[second]).setScale(this.scale);
-        }
+            this.object = this.scene.add.text(this.x, this.y, this.score.toString(), { fontFamily: 'Arial', color: '#ffffff' }).setScale(3*this.scale);
+            this.object.setDepth(100);
+            this.object.setOrigin(0.5, 0.5)
+            this.object.setResolution(2.5);
     }
-    // update(pipe: Pipe) {
-    //     if (pipe.obtascle.x == -10)
-    //         this.score++;
-    //         console.log(this.score);
-    //         this.create();
-    // }
+    update() {
+            this.object.setText(this.score.toString())
+    }
 }

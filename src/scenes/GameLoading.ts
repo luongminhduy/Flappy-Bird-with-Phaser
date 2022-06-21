@@ -11,7 +11,7 @@ export default class GameLoading extends Phaser.Scene {
         var progressBar = this.add.graphics();
             var progressBox = this.add.graphics();
             progressBox.fillStyle(0x222222, 0.8);
-            progressBox.fillRect(0, 270, 320, 50);
+            progressBox.fillRect(10, 270, 250, 50);
             
             var width = this.cameras.main.width;
             var height = this.cameras.main.height;
@@ -49,7 +49,7 @@ export default class GameLoading extends Phaser.Scene {
                 percentText.setText(parseInt((value * 100).toString()) + '%');
                 progressBar.clear();
                 progressBar.fillStyle(0xffffff, 1);
-                progressBar.fillRect(0, 280, 300 * value, 30);
+                progressBar.fillRect(20, 280, 200 * value, 30);
             });
             
             this.load.on('fileprogress', function (file) {

@@ -120,18 +120,18 @@ export default class GamePlaying extends Phaser.Scene {
         super('GamePlaying');
 	}
     init() {
-        this.score = new Score(135, 100, -1, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], this);
+        this.score = new Score(135, 100, 0, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], this);
         this.bird = new Bird(this, 40, 40);
         this.bullet = new Score(20, 30, 0, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], this);
         this.bullet.scale = 0.6;
         this.base = new Base(140, 460, 'base', this.bird, this.score, this);
-        this.pipe = new Pipe(100, 800, 'pipeUnder', this.bird, this, this.score);
-        this.pipeOn = new PipeOn(100, -200, 'pipeOn', this.bird, this, this.pipe);
+        this.pipe = new Pipe(100, 400, 'pipeUnder', this.bird, this, this.score);
+        this.pipeOn = new PipeOn(100, -100, 'pipeOn', this.bird, this, this.pipe);
         this.star = new Star(200, 300, 'star', this.bird, this.pipe, this.base, this, this.bullet);
         this.fire = new Fire('fire', this.bird, this);
         this.enemy = new Enemy(300, 300, ['enemy1', 'enemy2', 'enemy3'], this.bird, this.fire, this.score, this);
     }
-    create () {
+    create () { 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.img1 = this.physics.add.image(136, 256, 'background');
         this.img1.body.allowGravity = false;
@@ -139,18 +139,18 @@ export default class GamePlaying extends Phaser.Scene {
         this.img2 = this.physics.add.image(336, 256, 'background');
         this.img2.body.allowGravity = false;
         this.img2.setVelocityX(-10);
-        this.bullet.create();
         this.score.create();
         this.bird.create();
         this.pipe.create();
         this.pipeOn.create();
+        this.bullet.create();
         this.star.create();
         this.base.create();
         this.input.keyboard.on('keydown-X', () => {
             if (this.bullet.score >= 1) {
                 this.fire.create();
                 this.bullet.score--;
-                this.bullet.create();       
+                //this.bullet.create();       
                 this.sound.add('fire').play();
             }
         }, this);
@@ -164,6 +164,8 @@ export default class GamePlaying extends Phaser.Scene {
         this.pipeOn.update();
         this.star.update();
         this.fire.update();
+        this.score.update();
+        this.bullet.update();
         if (this.enemy)
             this.enemy.update();
         if (this.cursors.up.isDown) {
@@ -173,6 +175,6 @@ export default class GamePlaying extends Phaser.Scene {
         }
         if (this.img1.x < - 60) this.img1.x = 336;
         if (this.img2.x < - 60) this.img2.x = 336;
-        
+        localStorage.setItem('score', this.score.score.toString());
     }
 }        

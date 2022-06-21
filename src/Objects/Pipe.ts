@@ -31,7 +31,7 @@ export class Pipe extends Phaser.Physics.Arcade.Sprite {
                 this.score.score++;
                 if (this.score.score > 0)
                     this.scene.sound.add('score').play();
-                this.score.create();
+                //this.score.create();
         }
     }
 }

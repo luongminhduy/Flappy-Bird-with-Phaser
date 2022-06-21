@@ -24,6 +24,6 @@ export class Bird extends Phaser.Physics.Arcade.Sprite {
             this.bodyBird.angle += 4;
         }
         if (this.isDead)  this.scene.scene.start('GameOver'); 
-        if (this.y < - 50) this.isDead = true;
+        if (this.bodyBird.y < - 50) this.isDead = true;
     }
 }

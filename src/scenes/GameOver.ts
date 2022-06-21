@@ -25,8 +25,14 @@ export default class GameOver extends Phaser.Scene {
         this.img2.setVelocityX(-20);
         this.score.create();
         this.add.image(100, 300, 'highScore').setScale(0.1);
-        this.add.image(136, 206, 'gameOver');
-        this.sound.add('gameOver').play();   
+        this.add.image(136, 106, 'gameOver');
+        this.sound.add('gameOver').play();
+        var scoreTemp = localStorage.getItem('score');
+        var object = this.add.text(145, 200, "Your Score is " + scoreTemp!, { fontFamily: 'Arial', color: '#ffffff' }).setScale(2)
+        object.setDepth(100);
+        object.setOrigin(0.5, 0.5)
+        object.setResolution(2.5);
+        localStorage.setItem('score', '0');   
     }
     update(time: number, delta: number): void {
         if (this.cursors.up.isDown) {
