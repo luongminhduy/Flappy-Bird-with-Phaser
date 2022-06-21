@@ -1,29 +1,21 @@
 import { Bird } from "./Bird";
 import { Score } from "./Score";
 
-export class Pipe {
+export class Pipe extends Phaser.Physics.Arcade.Sprite {
     score: Score;
-    x: number;
-    y: number;
-    img: string;
     bird: Bird;
-    scene: Phaser.Scene;
-    obtascle: any = 0;
-    frame: number = 0;
+    obtascle !: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
     constructor(x: number, y: number, img: string, bird: Bird, scene: Phaser.Scene, score: Score) {
-        this.x = x;
-        this.y = y;
-        this.img = img;
+        super(scene, x, y, img);
         this.bird = bird;
-        this.scene = scene;
         this.score = score;
     }
     create() {
-        this.obtascle = this.scene.physics.add.sprite(this.x, this.y, this.img);
+        this.obtascle = this.scene.physics.add.sprite(this.x, this.y, 'pipeUnder');
         this.obtascle.setImmovable(true);
         this.obtascle.body.allowGravity = false;
         this.obtascle.setVelocityX(-80);
-        this.scene.physics.add.collider(this.bird.player, this.obtascle, (_player, _obtascle) => {
+        this.scene.physics.add.collider(this.bird.bodyBird, this.obtascle, (_player, _obtascle) => {
             if (_player.body.touching) {
                 var temp = this.score.score;
                 if (temp > parseInt(localStorage.getItem('highScore')!))

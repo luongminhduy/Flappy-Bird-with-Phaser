@@ -2,17 +2,16 @@ import Phaser from 'phaser'
 import { Bird } from '~/Objects/Bird';
 import GamePlaying from './GamePlaying';
 export default class GameStart extends Phaser.Scene {
-    bird: Bird;
-    cursors: any;
-    img1: any = 0;
-    img2: any = 0;
+    bird !: Bird;
+    cursors !: Phaser.Types.Input.Keyboard.CursorKeys;
+    img1 !: Phaser.Types.Physics.Arcade.ImageWithDynamicBody
+    img2 !: Phaser.Types.Physics.Arcade.ImageWithDynamicBody
 	constructor()
 	{
         super('GameStart');
-        this.bird = new Bird(0, 0, '', false, this, []);
 	}
     init() {
-        this.bird = new Bird(80, 305, 'birdUp', false, this, ['birdUp', 'birdMid', 'birdDown']);
+        this.bird = new Bird(this, 80, 305);
     }
     create () {
         localStorage.setItem('highScore', '0');
@@ -26,7 +25,7 @@ export default class GameStart extends Phaser.Scene {
         this.img2.setVelocityX(-20);
         this.add.image(136, 256, 'message');
         this.bird.create();
-        this.bird.player.body.allowGravity = false;
+        this.bird.bodyBird.body.allowGravity = false;
     }
     update(time: number, delta: number): void {
         if (this.cursors.up.isDown) {

@@ -1,26 +1,19 @@
 import { Bird } from "./Bird";
 import { Pipe } from "./Pipe";
-export class PipeOn {
-    x: number;
-    y: number;
-    img: string;
+export class PipeOn extends Phaser.Physics.Arcade.Sprite {
     bird: Bird;
-    scene: Phaser.Scene;
-    obtascle: any = 0;
+    obtascle !: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
     pipe: Pipe;
     constructor(x: number, y: number ,img: string, bird: Bird, scene: Phaser.Scene, pipe: Pipe) {
-        this.x = x
-        this.y = y;
-        this.img = img;
+        super(scene, x, y, img);
         this.bird = bird;
-        this.scene = scene;
         this.pipe = pipe;
     }
     create() {
-        this.obtascle = this.scene.physics.add.image(this.x, this.y, this.img);
+        this.obtascle = this.scene.physics.add.sprite(this.x, this.y, 'pipeOn');
         this.obtascle.setImmovable(true);
         this.obtascle.body.allowGravity = false;
-        this.scene.physics.add.collider(this.bird.player, this.obtascle, (_player, _obtascle) => {
+        this.scene.physics.add.collider(this.bird.bodyBird, this.obtascle, (_player, _obtascle) => {
             if (_player.body.touching) {
                 this.bird.isDead = true;
             }

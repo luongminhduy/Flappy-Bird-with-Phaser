@@ -1,24 +1,20 @@
-import { Pipe } from "./Pipe";
-export class Score {
-    x: number;
-    y: number;
+//import { Pipe } from "./Pipe";
+export class Score extends Phaser.GameObjects.Image {
     score: number;
     img: string[];
-    scene: Phaser.Scene;
-    object: any = 0;
-    objectFirst: any = 0;
-    objectSecond: any = 0;
+    object !: Phaser.GameObjects.Image
+    objectFirst !: Phaser.GameObjects.Image
+    objectSecond !: Phaser.GameObjects.Image
     scale: number = 1;
     constructor(x: number, y: number, score: number, img: string[], scene: Phaser.Scene) {
-        this.x = x;
-        this.y = y;
+        super(scene, x, y, img[0]);
         this.score = score;
         this.img = img;
-        this.scene = scene;
+       
     }
     create() {
-        if (this.object != 0) this.object.destroy();
-        if (this.objectFirst != 0 && this.objectSecond != 0) {
+        if (this.object != null) this.object.destroy();
+        if (this.objectFirst != null && this.objectSecond != null) {
             this.objectFirst.destroy();
             this.objectSecond.destroy();
         }
@@ -35,10 +31,10 @@ export class Score {
             this.objectSecond = this.scene.add.image(this.x + 14, this.y, this.img[second]).setScale(this.scale);
         }
     }
-    update(pipe: Pipe) {
-        if (pipe.obtascle.x == -10)
-            this.score++;
-            console.log(this.score);
-            this.create();
-    }
+    // update(pipe: Pipe) {
+    //     if (pipe.obtascle.x == -10)
+    //         this.score++;
+    //         console.log(this.score);
+    //         this.create();
+    // }
 }
