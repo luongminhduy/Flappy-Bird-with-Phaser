@@ -104,6 +104,9 @@ export default class GameLoading extends Phaser.Scene {
             this.load.audio('hit', 'hit.wav');
             this.load.path = "HighScore/";
             this.load.image('highScore', 'highScore.jpg');
+            this.load.path = "Button/"
+            this.load.spritesheet('buttonjump', 'button-round-b.png', { frameWidth: 96, frameHeight: 96 });
+            
     }
     init() {
         

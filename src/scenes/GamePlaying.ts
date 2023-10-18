@@ -114,6 +114,7 @@ export default class GamePlaying extends Phaser.Scene {
     cursors !: Phaser.Types.Input.Keyboard.CursorKeys;
     img1 !: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
     img2 !: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
+    buttonjump !: Phaser.GameObjects.Sprite;
 
 	constructor()
 	{
@@ -131,7 +132,11 @@ export default class GamePlaying extends Phaser.Scene {
         this.fire = new Fire('fire', this.bird, this);
         this.enemy = new Enemy(300, 300, ['enemy1', 'enemy2', 'enemy3'], this.bird, this.fire, this.score, this);
     }
-    create () { 
+    create () {
+        this.buttonjump = this.add.sprite(100, 100, 'buttonjump');
+        // game.add.button(600, 500, 'buttonjump', null, this, 0, 1, 0, 1);  //game, x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame
+        //this.buttonjump.fixedToCamera = true;
+        this.buttonjump.setDepth(99);
         this.cursors = this.input.keyboard.createCursorKeys();
         this.img1 = this.physics.add.image(136, 256, 'background');
         this.img1.body.allowGravity = false;
